@@ -1,0 +1,66 @@
+{
+    "seed": 0,
+    "description": "null",
+    "root_dir": "~/experiments/Network-test",
+    "cudnn_deterministic": false,
+    "trainer": {
+        "module": "trainer.default_fixed_length",
+        "main": "Trainer",
+        "epochs": 1200,
+        "save_checkpoint_interval": 1,
+        "validation": {
+            "interval": 1,
+            "find_max": true,
+            "custom": {
+                "visualize_audio_limit": 20,
+                "visualize_waveform_limit": 20,
+                "visualize_spectrogram_limit": 20,
+                "n_samples": 32000,
+                "sr": 16000,
+            }
+        }
+    },
+    "model": {
+        "module": "model.SpEx",
+        "main": "Model",
+        "args": {}
+    },
+    "loss_function": {
+        "module": "model.loss",
+        "main": "loss_fn",
+        "args": {}
+    },
+    "optimizer": {
+        "lr": 0.001,
+        "beta1": 0.9,
+        "beta2": 0.999
+    },
+    "train_dataset": {
+        "module": "dataset.new_dataset_validation_fixed_length_waveform_pre_mix_no_preprocessed",
+        "main": "Dataset",
+        "args": {
+            "dataset_list": "~/dataset/mix_2/train/train_dataset_path.txt",
+            "limit": null,
+            "offset": 0,
+            "n_samples": 32000,
+            "sr": 16000,
+        }
+    },
+    "validation_dataset": {
+        "module": "dataset.new_dataset_validation_fixed_length_waveform_pre_mix_no_preprocessed",
+        "main": "Dataset",
+        "args": {
+            "dataset_list": "~/dataset/mix_2/dev/dev_dataset_path.txt",
+            "limit": null,
+            "offset": 0,
+            "sr": 16000,
+            "n_samples": 32000
+        }
+    },
+    "train_dataloader": {
+        "batch_size": 1,
+        "num_workers": 1,
+        "shuffle": true,
+        "pin_memory": true
+    }
+}

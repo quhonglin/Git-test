@@ -41,3 +41,5 @@ for item in tqdm(range(1260)):
     writer.add_audio(f"Speech/{item + 1}_Mixture", mixture, 1, sample_rate=sr)
     writer.add_audio(f"Speech/{item + 1}_Target", target, 1, sample_rate=sr)
     writer.add_audio(f"Speech/{item + 1}_Reference", reference, 1, sample_rate=sr)
+
+print("Git更新版本")
